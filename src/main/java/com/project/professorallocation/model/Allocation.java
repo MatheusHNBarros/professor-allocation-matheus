@@ -32,8 +32,10 @@ public class Allocation {
 	@Temporal(TemporalType.TIME)
 	private Date endHour;
 	
+	@Column(name = "professor_id", nullable = false)
 	private Long professorId;
 	
+	@Column(name = "course_id", nullable = false)
 	private Long courseId;
 
 	public Long getId() {
