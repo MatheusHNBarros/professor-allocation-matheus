@@ -13,7 +13,7 @@ import javax.persistence.Table;
 public class Department {
 
 	@Column(length = 100, nullable = false)
-	private String nome;
+	private String name;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -22,12 +22,12 @@ public class Department {
 		super();
 	}
 
-	public String getNome() {
-		return nome;
+	public String getName() {
+		return name;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setName(String nome) {
+		this.name = nome;
 	}
 
 	public Long getId() {
@@ -40,7 +40,7 @@ public class Department {
 
 	@Override
 	public String toString() {
-		return "Department [nome=" + nome + ", id=" + id + "]";
+		return "Department [nome=" + name + ", id=" + id + "]";
 	}
 
 }
