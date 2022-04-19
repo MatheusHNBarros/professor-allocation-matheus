@@ -43,4 +43,9 @@ public class Course {
 		return "Course [id=" + id + ", nome=" + nome + "]";
 	}
 
+	public void setName(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
