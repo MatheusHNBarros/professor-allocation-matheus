@@ -95,6 +95,11 @@ public class Allocation {
 	public Allocation() {
 		super();
 	}
+
+	public void setName(String string) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 
