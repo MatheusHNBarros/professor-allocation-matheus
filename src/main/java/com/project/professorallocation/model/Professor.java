@@ -28,13 +28,13 @@ public class Professor {
 	
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "department_id", nullable = false, insertable = false, updatable = false)
-	private Department department;
+	private Professor department;
 	
-	public Department getDepartment() {
+	public Professor getDepartment() {
 		return department;
 	}
 
-	public void setDepartment(Department department) {
+	public void setDepartment(Professor department) {
 		this.department = department;
 	}
 
