@@ -9,7 +9,6 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "departament")
-
 public class Department {
 
 	@Column(length = 100, nullable = false)
@@ -17,10 +16,6 @@ public class Department {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
-	public Department() {
-		super();
-	}
 
 	public String getName() {
 		return name;
@@ -43,4 +38,7 @@ public class Department {
 		return "Department [nome=" + name + ", id=" + id + "]";
 	}
 
+	public Department() {
+			super();
+		}
 }
