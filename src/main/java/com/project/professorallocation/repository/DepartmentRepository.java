@@ -5,14 +5,14 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.project.professorallocation.model.Department;
+import com.project.professorallocation.model.Professor;
 
 @Repository
-public interface DepartmentRepository extends JpaRepository<Department, Long> {
+public interface DepartmentRepository extends JpaRepository<Professor, Long> {
 
 	// SELECT * FROM department WHERE name = name
-	List<Department> findByName(String name);
+	List<Professor> findByName(String name);
 
 	// SELECT * FROM department WHERE name LIKE %name%
-	List<Department> findByNameLike(String name);
+	List<Professor> findByNameLike(String name);
 }
