@@ -38,6 +38,8 @@ public class Allocation {
 	@Column(name = "course_id", nullable = false)
 	private Long courseId;
 
+	private Object setName;
+
 	public Long getId() {
 		return id;
 	}
@@ -96,8 +98,8 @@ public class Allocation {
 		super();
 	}
 
-	public void setName(String string) {
-		// TODO Auto-generated method stub
+	public void setName(String setName) {
+		this.setName = setName;
 		
 	}
 	

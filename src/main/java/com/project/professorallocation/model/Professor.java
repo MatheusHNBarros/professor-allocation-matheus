@@ -1,5 +1,8 @@
 package com.project.professorallocation.model;
 
+import java.time.DayOfWeek;
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,6 +32,11 @@ public class Professor {
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "department_id", nullable = false, insertable = false, updatable = false)
 	private Professor department;
+	private DayOfWeek setDayOfWeek;
+	private long setProfessorId;
+	private long setCourseId;
+	private Date setStarHour;
+	private Date setEndHour;
 	
 	public Professor getDepartment() {
 		return department;
@@ -77,6 +85,31 @@ public class Professor {
 
 	public Professor() {
 		super();
+	}
+
+	public void setDayOfWeek(DayOfWeek setDayOfWeek) {
+		this.setDayOfWeek = setDayOfWeek;
+		
+	}
+
+	public void setProfessorId(long setProfessorId) {
+		this.setProfessorId = setProfessorId;
+		
+	}
+
+	public void setCourseId(long setCourseId) {
+		this.setCourseId = setCourseId;
+		
+	}
+
+	public void setStarHour(Date setStarHour) {
+		this.setStarHour = setStarHour;
+		
+	}
+
+	public void setEndHour(Date setEndHour) {
+		this.setEndHour = setEndHour;
+		
 	}
 
 }

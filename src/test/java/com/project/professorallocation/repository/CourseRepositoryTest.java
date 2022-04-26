@@ -50,7 +50,7 @@ public class CourseRepositoryTest {
 	}
 
 	@Test
-	public void udate() {
+	public void update() {
 		Course courseBeingCreated = new Course();
 		courseBeingCreated.setId(5L);
 		courseBeingCreated.setName("Departamento de fisioterapia");

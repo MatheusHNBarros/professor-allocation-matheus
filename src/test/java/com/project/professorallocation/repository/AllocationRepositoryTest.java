@@ -52,37 +52,43 @@ public class AllocationRepositoryTest {
 		List<Allocation> allAllocationsOfASpecificProfessor = repository.findByProfessorId(1L);
 
 		allAllocationsOfASpecificProfessor.forEach(System.out::println);
-		
-		}
+
 	}
-	
-	// @Test
-	// public void create() {
-	// Allocation allocationBeingCreated = new Allocation();
-	// allocationBeingCreated.setName("Departamento de informática");
 
-	// allocationBeingCreated = repository.save(allocationBeingCreated);
-	// System.out.println(allocationBeingCreated);
-	// }
+	@Test
+	public void deleteAll() {
 
-	//@Test
-	//public void udate() {
-		//Allocation allocationBeingCreated = new Allocation();
-		//allocationBeingCreated.setId(5L);
-		//allocationBeingCreated.setName("Departamento de fisioterapia");
+		repository.deleteAllInBatch();
+	}
+}
 
-		//allocationBeingCreated = repository.save(allocationBeingCreated);
-		//System.out.println(allocationBeingCreated);
+// @Test
+// public void create() {
+// Allocation allocationBeingCreated = new Allocation();
+// allocationBeingCreated.setName("Departamento de informática");
 
-	//}
+// allocationBeingCreated = repository.save(allocationBeingCreated);
+// System.out.println(allocationBeingCreated);
+// }
 
-	//@Test
-	//public void delete() {
-		//repository.deleteById(null);
-	//}
+// @Test
+// public void udate() {
+// Allocation allocationBeingCreated = new Allocation();
+// allocationBeingCreated.setId(5L);
+// allocationBeingCreated.setName("Departamento de fisioterapia");
 
-	//@Test
-	//public void deleteAllItems() {
-		//repository.deleteAllInBatch();
-	//}
+// allocationBeingCreated = repository.save(allocationBeingCreated);
+// System.out.println(allocationBeingCreated);
+
+// }
+
+// @Test
+// public void delete() {
+// repository.deleteById(null);
+// }
+
+// @Test
+// public void deleteAllItems() {
+// repository.deleteAllInBatch();
+// }
 //}
