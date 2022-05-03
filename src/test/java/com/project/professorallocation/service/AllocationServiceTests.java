@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 
 import com.project.professorallocation.model.Allocation;
+import com.project.professorallocation.model.Allocation;
 
 @SpringBootTest
 @TestPropertySource(locations = "classpath:application.properties")
@@ -26,11 +27,21 @@ public class AllocationServiceTests {
 		allocation.setDayOfWeek(DayOfWeek.MONDAY);
 		allocation.setProfessorId(4L);
 		allocation.setCourseId(2L);
-		allocation.setStarHour(sdf.parse("19:00-0300"));
+		allocation.setStartHour(sdf.parse("19:00-0300"));
 		allocation.setEndHour(sdf.parse("21:00-0300"));
 		
 		allocation = service.create(allocation);
-		
-		//update
+	}
+	
+	@Test
+	public void update() throws ParseException {
+		Allocation allocation = new Allocation();
+		allocation.setDayOfWeek(DayOfWeek.MONDAY);
+		allocation.setProfessorId(4L);
+		allocation.setCourseId(2L);
+		allocation.setStartHour(sdf.parse("19:00-0300"));
+		allocation.setEndHour(sdf.parse("21:00-0300"));
+
+		allocation = service.update(allocation);
 	}
 }

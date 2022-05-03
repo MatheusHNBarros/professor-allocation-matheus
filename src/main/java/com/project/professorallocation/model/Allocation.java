@@ -14,9 +14,14 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 @Entity
 @Table(name = "allocation")
 public class Allocation {
+	
+	@JsonProperty(access = Access.READ_ONLY)
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -32,13 +37,21 @@ public class Allocation {
 	@Temporal(TemporalType.TIME)
 	private Date endHour;
 	
+	@JsonProperty(access = Access.WRITE_ONLY)
 	@Column(name = "professor_id", nullable = false)
 	private Long professorId;
 	
+	@JsonProperty(access = Access.WRITE_ONLY)
 	@Column(name = "course_id", nullable = false)
 	private Long courseId;
 
 	private Object setName;
+
+	private Object setCourse;
+
+	private Object setProfessor;
+
+	private Date startHour;
 
 	public Long getId() {
 		return id;
@@ -56,12 +69,12 @@ public class Allocation {
 		this.dayOfWeek = dayOfWeek;
 	}
 
-	public Date getStarHour() {
-		return starHour;
+	public Date getStartHour() {
+		return startHour;
 	}
 
-	public void setStarHour(Date starHour) {
-		this.starHour = starHour;
+	public void setStartHour(Date startHour) {
+		this.startHour = startHour;
 	}
 
 	public Date getEndHour() {
@@ -99,8 +112,26 @@ public class Allocation {
 	}
 
 	public void setName(String setName) {
-		this.setName = setName;
+		this.setSetName(setName);
 		
+	}
+
+	public void setCourse(Course course) {
+		this.setCourse = setCourse;
+		
+	}
+
+	public void setProfessor(Professor professor) {
+		this.setProfessor = setProfessor;
+		
+	}
+
+	public Object getSetName() {
+		return setName;
+	}
+
+	public void setSetName(Object setName) {
+		this.setName = setName;
 	}
 	
 	

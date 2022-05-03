@@ -1,8 +1,5 @@
 package com.project.professorallocation.model;
 
-import java.time.DayOfWeek;
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,20 +7,23 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 @Entity
 @Table(name = "departament")
 public class Department {
 
 	@Column(length = 100, nullable = false)
 	private String name;
+	
+	
+	@JsonProperty(access = Access.READ_ONLY)
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private long setProfessorId;
-	private DayOfWeek setDayOfWeek;
 	private long setCourseId;
-	private Date setStarHour;
-	private Date setEndHour;
 
 	public String getName() {
 		return name;
@@ -55,23 +55,9 @@ public class Department {
 		
 	}
 
-	public void setDayOfWeek(DayOfWeek setDayWeek) {
-	this.setDayOfWeek = setDayWeek;
-		
-	}
-
 	public void setCourseId(long setCourseId) {
 		this.setCourseId = setCourseId;
 		
 	}
 
-	public void setStarHour(Date setStarHour) {
-		this.setStarHour = setStarHour;
-		
-	}
-
-	public void setEndHour(Date setEndHour) {
-		this.setEndHour = setEndHour;
-		
-	}
 }

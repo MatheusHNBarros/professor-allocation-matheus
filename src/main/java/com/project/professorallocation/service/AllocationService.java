@@ -5,18 +5,24 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.project.professorallocation.model.Allocation;
+import com.project.professorallocation.model.Course;
+import com.project.professorallocation.model.Professor;
 import com.project.professorallocation.repository.AllocationRepository;
 
 @Service
 public class AllocationService {
 	private final AllocationRepository repository;
+    private final ProfessorService professorService;
+    private final CourseService courseService;
 
-	public AllocationService(AllocationRepository repository) {
-		super();
-		this.repository = repository;
-	}
+    public AllocationService(AllocationRepository allocationRepository, ProfessorService professorService, CourseService courseService) {
+        super();
+        this.repository = allocationRepository;
+        this.professorService = professorService;
+        this.courseService = courseService;
+    }
 
-	public Allocation findByid(Long id) {
+	public Allocation findById(Long id) {
 		return repository.findById(id).orElse(null);
 	}
 
@@ -33,60 +39,65 @@ public class AllocationService {
 	public Allocation create(Allocation allocation) {
 		allocation.setId(null);
 		return saveInternal(allocation);
-	}
 
-	private Allocation saveInternal(Allocation allocation) {
-		Allocation createdAllocation = repository.save(allocation);
-		return createdAllocation;
 	}
-
+	
 	public Allocation update(Allocation allocation) {
 		Long id = allocation.getId();
-		if (id == null || !repository.existsById(id)) {
-			return null;
-		} else {
+		if (id != null && repository.existsById(id)) {
 			return saveInternal(allocation);
+		} else {
+			return null;
 		}
 	}
 
 	private Allocation saveInternal(Allocation allocation) {
-		if (hasCollision(allocation)) {
+		if(!isEndHourGreaterThanStartHour(allocation) || hasCollision(allocation)) {
 			throw new RuntimeException("There is a time collision for this allocation");
-		}
+		} else {
+		
 		allocation = repository.save(allocation);
+		
+		Professor professor = professorService.findById(allocation.getProfessorId());
+        allocation.setProfessor(professor);
 
+        Course course = courseService.findById(allocation.getCourseId());
+        allocation.setCourse(course);
+		
 		return allocation;
+		}
+	}
+
+	private boolean isEndHourGreaterThanStartHour(Allocation allocation) {
+		return allocation != null && allocation.getStartHour() != null && allocation.getEndHour() != null
+	            && allocation.getEndHour().compareTo(allocation.getStartHour()) > 0;
 	}
 
 	private boolean hasCollision(Allocation newAllocation) {
-		boolean collisionFound = false;
+		boolean hasCollision = false;
 		
 		List<Allocation> currentAllocations = repository.findByProfessorId(newAllocation.getProfessorId());
-		
+
 		for (Allocation item : currentAllocations) {
-			if (hasCollinsion(item, newAllocation)) {
-				collisionFound = true;
+			if (hasCollision(item, newAllocation)) {
+				hasCollision = true;
 				break;
 			}
 		}
-		
-		return collisionFound;
+		return hasCollision;
 	}
 
-	public boolean hasCollinsion(Allocation currentAllocation, Allocation newAllocation) {
-		boolean collision = !currentAllocation.getId().equals(newAllocation.getId())
+	private boolean hasCollision(Allocation currentAllocation, Allocation newAllocation) {
+		return !currentAllocation.getId().equals(newAllocation.getId())
 				&& currentAllocation.getProfessorId().equals(newAllocation.getProfessorId())
 				&& currentAllocation.getDayOfWeek().equals(newAllocation.getDayOfWeek())
-				&& currentAllocation.getStarHour().compareTo(newAllocation.getEndHour()) < 0
-				&& newAllocation.getStarHour().compareTo(currentAllocation.getEndHour()) < 0;
-
-		return collision;
+				&& currentAllocation.getStartHour().compareTo(newAllocation.getEndHour()) < 0
+				&& newAllocation.getStartHour().compareTo(currentAllocation.getEndHour()) < 0;
 	}
 
-	public boolean apagarEsseMetodo() {
-		Long valor1 = 50L;
-		Long valor2 = 100L;
-
-		return valor1.compareTo(valor2) == 0;
+	public List<Allocation> findByProfessor(Long id) {
+		
+		return repository.findAll();
 	}
+
 }

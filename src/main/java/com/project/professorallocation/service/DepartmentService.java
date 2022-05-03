@@ -34,7 +34,7 @@ public class DepartmentService {
 			return insertedDepartment;
 		}
 		
-		private void deleteById(Long id) {
+		public void deleteById(Long id) {
 			if (repository.existsById(id));
 				repository.deleteById(id);
 		}

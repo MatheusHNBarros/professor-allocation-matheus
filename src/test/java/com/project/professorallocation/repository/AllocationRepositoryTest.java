@@ -30,7 +30,7 @@ public class AllocationRepositoryTest {
 	public void create() throws ParseException {
 		Allocation allocation = new Allocation();
 		allocation.setDayOfWeek(DayOfWeek.THURSDAY);
-		allocation.setStarHour(sdf.parse("19:00-0300"));
+		allocation.setStartHour(sdf.parse("19:00-0300"));
 		allocation.setEndHour(sdf.parse("21:00-0300"));
 		allocation.setProfessorId(1L);
 		allocation.setCourseId(1L);
