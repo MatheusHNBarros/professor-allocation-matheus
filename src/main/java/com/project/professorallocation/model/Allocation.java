@@ -19,6 +19,8 @@ import javax.persistence.TemporalType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
 @Table(name = "allocation")
 public class Allocation {
@@ -31,7 +33,8 @@ public class Allocation {
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false, name = "day")
 	private DayOfWeek dayOfWeek;
-
+	
+	@ApiModelProperty(example = "15:00-0300")
 	@Temporal(TemporalType.TIME)
 	private Date endHour;
 
@@ -50,7 +53,8 @@ public class Allocation {
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "course_id", nullable = false, insertable = false, updatable = false)
 	private Course course;
-
+	
+	@ApiModelProperty(example = "15:00-0300")
 	@Temporal(TemporalType.TIME)
 	private Date startHour;
 
