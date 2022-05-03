@@ -26,11 +26,7 @@ public class Course {
 	@JsonProperty(access = Access.WRITE_ONLY)
 	@Column(unique = true, nullable = false)
 	private String nome;
-	private DayOfWeek setDayOfWeek;
-	private long setProfessorId;
-	private long setCourseId;
-	private Date setStarHour;
-	private Date setEndHour;
+	
 
 	public Course() {
 		super();
@@ -62,27 +58,31 @@ public class Course {
 		
 	}
 
-	public void setDayOfWeek(DayOfWeek setDayOfWeek) {
-		this.setDayOfWeek = setDayOfWeek;
+	public void setDayOfWeek(DayOfWeek monday) {
+		// TODO Auto-generated method stub
 		
 	}
 
-	public void setProfessorId(long setProfessorId) {
-		this.setProfessorId = setProfessorId;
+	public void setProfessorId(long l) {
+		// TODO Auto-generated method stub
 		
 	}
 
-	public void setCourseId(long setCourseId) {
-		this.setCourseId = setCourseId;		
-	}
-
-	public void setStarHour(Date setStarHour) {
-		this.setStarHour = setStarHour;	
-	}
-
-	public void setEndHour(Date setEndHour) {
-		this.setEndHour = setEndHour;
+	public void setCourseId(long l) {
+		// TODO Auto-generated method stub
 		
 	}
+
+	public void setStarHour(Date parse) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setEndHour(Date parse) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
 
 }

@@ -38,7 +38,7 @@ public class CourseController {
 		return new ResponseEntity<>(allCourses, HttpStatus.OK);
 	}
 
-	@GetMapping(path = "{/courseId}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(path = "/{courseId}", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<Course> findById(@PathVariable(name = "courseId") Long id) {
 		Course item = service.findById(id);
@@ -58,7 +58,7 @@ public class CourseController {
 		return new ResponseEntity<>(item, HttpStatus.CREATED);
 	}
 	
-	@PutMapping(path = "{/courseId}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PutMapping(path = "/{courseId}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<Course> update(@PathVariable(name = "courseId") Long id,
 			@RequestBody Course course) {

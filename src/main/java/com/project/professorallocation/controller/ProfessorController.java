@@ -39,7 +39,7 @@ public class ProfessorController {
 		return new ResponseEntity<>(allProfessors, HttpStatus.OK);
 	}
 	
-	@GetMapping(path = "{/professorId}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(path = "/{professorId}", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<Professor> findById(@PathVariable(name = "professorId") Long id) {
 		Professor item = service.findById(id);
@@ -60,7 +60,7 @@ public class ProfessorController {
 	}
 	
 	
-	@PutMapping(path = "{/professorId}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PutMapping(path = "/{professorId}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<Professor> update(@PathVariable(name = "professorId") Long id,
 			@RequestBody Professor professor) {

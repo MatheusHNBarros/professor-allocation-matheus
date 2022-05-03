@@ -10,6 +10,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -20,37 +22,36 @@ import com.fasterxml.jackson.annotation.JsonProperty.Access;
 @Entity
 @Table(name = "allocation")
 public class Allocation {
-	
+
 	@JsonProperty(access = Access.READ_ONLY)
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false, name = "day")
 	private DayOfWeek dayOfWeek;
-	
-	@Temporal(TemporalType.TIME)
-	@Column(nullable = false)
-	private Date starHour;
-	
+
 	@Temporal(TemporalType.TIME)
 	private Date endHour;
-	
+
 	@JsonProperty(access = Access.WRITE_ONLY)
 	@Column(name = "professor_id", nullable = false)
 	private Long professorId;
-	
+
 	@JsonProperty(access = Access.WRITE_ONLY)
 	@Column(name = "course_id", nullable = false)
 	private Long courseId;
 
-	private Object setName;
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "professor_id", nullable = false, insertable = false, updatable = false)
+	private Professor professor;
 
-	private Object setCourse;
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "course_id", nullable = false, insertable = false, updatable = false)
+	private Course course;
 
-	private Object setProfessor;
-
+	@Temporal(TemporalType.TIME)
 	private Date startHour;
 
 	public Long getId() {
@@ -103,7 +104,7 @@ public class Allocation {
 
 	@Override
 	public String toString() {
-		return "Allocation [id=" + id + ", dayOfWeek=" + dayOfWeek + ", starHour=" + starHour + ", endHour=" + endHour
+		return "Allocation [id=" + id + ", dayOfWeek=" + dayOfWeek + ", startHour=" + startHour + ", endHour=" + endHour
 				+ ", professorId=" + professorId + ", courseId=" + courseId + "]";
 	}
 
@@ -111,29 +112,20 @@ public class Allocation {
 		super();
 	}
 
-	public void setName(String setName) {
-		this.setSetName(setName);
-		
-	}
-
-	public void setCourse(Course course) {
-		this.setCourse = setCourse;
-		
+	public Professor getProfessor() {
+		return professor;
 	}
 
 	public void setProfessor(Professor professor) {
-		this.setProfessor = setProfessor;
-		
+		this.professor = professor;
 	}
 
-	public Object getSetName() {
-		return setName;
+	public Course getCourse() {
+		return course;
 	}
 
-	public void setSetName(Object setName) {
-		this.setName = setName;
+	public void setCourse(Course course) {
+		this.course = course;
 	}
-	
-	
 
 }

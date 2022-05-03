@@ -16,30 +16,27 @@ import com.fasterxml.jackson.annotation.JsonProperty.Access;
 @Table(name = "professor")
 
 public class Professor {
-	
+
 	@JsonProperty(access = Access.READ_ONLY)
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(nullable = false)
 	private Long id;
-	
+
 	@Column(nullable = false)
 	private String name;
 
 	@Column(length = 11, nullable = false, unique = true)
 	private String cpf;
-	
+
 	@JsonProperty(access = Access.WRITE_ONLY)
 	@Column(name = "department_id", nullable = false)
 	private Long departmentId;
-	
+
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "department_id", nullable = false, insertable = false, updatable = false)
 	private Professor department;
-	private long setProfessorId;
-	private long setCourseId;
-	private Object setCourse;
-	
+
 	public Professor getDepartment() {
 		return department;
 	}
@@ -89,15 +86,8 @@ public class Professor {
 		super();
 	}
 
-	public void setProfessorId(long setProfessorId) {
-		this.setProfessorId = setProfessorId;
+	public void setCourseId(long l) {
+		// TODO Auto-generated method stub
 		
 	}
-
-	public void setCourseId(long setCourseId) {
-		this.setCourseId = setCourseId;
-		
-	}
-
-
 }
